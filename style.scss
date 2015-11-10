@@ -1,0 +1,33 @@
+---
+---
+
+$mainCol : #3f3680;
+$otherCol : white;
+
+
+$bgColor : $otherCol;
+$textColor : $mainCol;
+$borderColor : $mainCol;
+
+
+
+body {
+  background :$bgColor ;
+  min-height:100vh;
+  display:flex;
+  align-items: center;
+  line-height:2em;
+  font-family: 'Source Sans Pro', sans-serif;
+  //font-family: 'Open Sans Condensed', sans-serif;
+  //font-family: 'Muli', sans-serif;
+  //font-family: 'Lora', serif;
+  justify-content: center;
+  //font-family : monospace;
+}
+.content {
+  padding : 10px 80px ;
+  color : $textColor;
+  max-width:700px;
+  //min-width:400px;
+  border-left : $borderColor solid 1px;
+}
