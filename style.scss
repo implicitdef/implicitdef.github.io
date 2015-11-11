@@ -2,7 +2,8 @@
 ---
 
 $mainCol : #3f3680;
-$otherCol : white;
+$mainCol : rgb(230, 228, 213);
+$otherCol : rgb(215, 146, 82);
 
 
 $bgColor : $otherCol;
@@ -17,6 +18,7 @@ body {
   display:flex;
   align-items: center;
   line-height:2em;
+  font-size:2em;
   font-family: 'Source Sans Pro', sans-serif;
   //font-family: 'Open Sans Condensed', sans-serif;
   //font-family: 'Muli', sans-serif;
@@ -27,7 +29,7 @@ body {
 .content {
   padding : 10px 80px ;
   color : $textColor;
-  max-width:700px;
+  //max-width:700px;
   //min-width:400px;
   border-left : $borderColor solid 1px;
 }
