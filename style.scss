@@ -41,6 +41,7 @@ body {
   .name {
     font-size:68px;
     letter-spacing: -3px;
+    font-weight:bold;
   }
 }
 .l2 {
@@ -54,10 +55,11 @@ body {
 }
 
 .rest {
-  text-align:justify;
+  //text-align:justify;
   font-size:20px;
   strong {
     font-size:30px;
     font-weight : bold;
+    line-height:0;
   }
 }
