@@ -17,17 +17,11 @@ body {
   min-height:100vh;
   display:flex;
   align-items: center;
-  line-height:2em;
-  font-size:2em;
-  font-family: 'Source Sans Pro', sans-serif;
   font-family: 'Open Sans Condensed', sans-serif;
-  //font-family: 'Muli', sans-serif;
-  //font-family: 'Lora', serif;
   justify-content: center;
-  //font-family : monospace;
 }
 .content {
-  margin-top:100px;
+  margin-top:50px;
   padding : 30px 80px ;
   color : $textColor;
   width:700px;
@@ -37,27 +31,33 @@ body {
 
 .l1 {
   font-size:36px;
-  letter-spacing:3px;
+  letter-spacing:4px;
+  line-height:0px;
+  margin-left:-6px;
   .hi {
-    font-size:80px;
+    font-size:94px;
+    letter-spacing:-4px;
   }
   .name {
-    font-size:48px;
-    font-family: 'Lora', sans-serif;
-    letter-spacing: -5px;
+    font-size:68px;
+    letter-spacing: -3px;
   }
 }
 .l2 {
-  font-size:24px;
-  letter-spacing:2.8px;
-  margin-bottom:40px;
+  font-size:30px;
+  letter-spacing:-0.1px;
+  margin-bottom:30px;
   .i-write-code {
-    font-size:28px;
+    font-size:48px;
     font-weight : bold;
   }
 }
 
-
 .rest {
   text-align:justify;
+  font-size:20px;
+  strong {
+    font-size:30px;
+    font-weight : bold;
+  }
 }
