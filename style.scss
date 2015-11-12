@@ -1,15 +1,14 @@
 ---
 ---
 
-$mainCol : #3f3680;
 $mainCol : rgb(230, 228, 213);
-$otherCol : rgb(215, 146, 82);
+$otherCol : rgb(56, 172, 113);
 
 
 $bgColor : $otherCol;
 $textColor : $mainCol;
 $borderColor : $mainCol;
-
+a:hover {text-decoration:none;}
 
 
 body {
