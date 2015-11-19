@@ -1,6 +1,7 @@
 ---
-layout: global
+layout: home
 ---
+
 
 <h1 class="l1"><span class="hi">Hi,</span> I'm <span class="name">Emmanuel Letallieur</span></h1>
 
@@ -16,3 +17,11 @@ layout: global
 I'm <a href="https://github.com/implicitdef">implicitdef on Github</a>. Here is my <a href="https://www.linkedin.com/in/emmanuelletallieur/en">LinkedIn</a>.</p>
 
 <p class="rest">Currently available for hire. Contact me at <a href=“mailto:emmanuel@implicitdef.com”>emmanuel@implicitdef.com</a>.</p>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
