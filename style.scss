@@ -43,12 +43,14 @@ body.blog {
     font-size:15px;
     background :$textColor ;
     color : rgb(51, 68, 57);
-    p {
-      font-family:sans-serif;
+    font-family:'Open Sans', monospace;
+    h1, h2, h3, h4 {
+      font-family: 'Open Sans Condensed', sans-serif;
+      font-weight:bold;
     }
     h4 {
       margin-bottom:50px;
-      //font-style:italic;
+      font-style:italic;
       //letter-spacing:1.1px;
     }
     .highlight {
