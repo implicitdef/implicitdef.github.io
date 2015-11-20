@@ -38,20 +38,27 @@ body.blog {
 
   .content {
     max-width:700px;
-    padding : 30px 20px ;
+    padding : 30px 20px;
+    margin-bottom:50px;
     border-top : $borderColor solid 1px;
     font-size:15px;
     background :$textColor ;
     color : rgb(51, 68, 57);
     font-family:'Open Sans', monospace;
+    .date {
+      font-size:13px;
+      color:$greenCol;
+    }
     h1, h2, h3, h4 {
       font-family: 'Open Sans Condensed', sans-serif;
       font-weight:bold;
     }
+    h3 {
+      margin-top:30px;
+    }
     h4 {
       margin-bottom:50px;
       font-style:italic;
-      //letter-spacing:1.1px;
     }
     .highlight {
       pre {
@@ -60,8 +67,15 @@ body.blog {
         border-radius:0;
         code {
           font-size:11px;
+          color:inherit;
         }
       }
+    }
+    code {
+      color:$greenCol;
+      background:transparent;
+      font-size:13px;
+      padding:inherit;
     }
   }
 

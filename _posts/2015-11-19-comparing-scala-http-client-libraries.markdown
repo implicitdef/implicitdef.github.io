@@ -1,14 +1,18 @@
 ---
 layout: blog
+title: Comparing Scala's HTTP client libraries
 ---
+
+
 
 # Comparing Scala's HTTP client libraries
 
-#### Or why should probably use Play-WS.
+#### Or why should probably use Play! WS
 
-Today we're looking at the various Scala libraries available to do some HTTP requests. It's a very easy problem, but there's a bunch of projects on Github all hoping to do better than the previous one. Let's see how they really compare to each other.
 
-This comparison is not about low-level performance or cleverness of implementation. We will be only talking about already long-lived and popular libraries : I assume they are all correct and perform decently. Instead, I'm focusing on the quality of the documentation, the ease-of-use of the API, and what the resulting code looks like.
+Today we're looking at the various Scala libraries available to perform HTTP requests. It's a very easy problem, yet there's a bunch of projects on Github all hoping to do better than the previous one. Let's see how they really compare to each other.
+
+This comparison is not about low-level performance or cleverness of implementation. We will be only talking about already long-lived and popular libraries : I assume they are all correct and perform decently for an everyday usage. Instead, I'm focusing on the quality of the documentation, the ease-of-use of the API, and what the resulting code looks like.
 
 Let's start where a Scala newcomer would start : googling. If one types "__scala http client__" into Google, he'll get in order :
 
@@ -75,7 +79,7 @@ From the github documentation [https://github.com/stackmob/newman](https://githu
 
 Somebody made a quick fork ([https://github.com/megamsys/newman](https://github.com/megamsys/newman)) to support Scala 2.11, but without much info available. It's unlikely the original author wakes up and merges the fork, or that the fork gains enough traction to replace the original.
 
-I still call it an abandonware. No point in even trying to code with it.
+I still call it an abandonware. No point in going further.
 
 Diagnostic : __abandonware__. Don't use it.
 
@@ -83,9 +87,9 @@ Diagnostic : __abandonware__. Don't use it.
 
 Scala-http ([https://github.com/scalaj/scalaj-http](https://github.com/scalaj/scalaj-http)) looks clean and maintained. However it is synchronous ! No Futures there. Each HTTP request _will_ block the thread.
 
-I'm not going to try to code with it, it's idiomatic in Scala to do everything asynchronously. It's probably a decent library but I can't see a use case for it, sorry.
+In Scala it is quite idiomatic to do everything asynchronously, using synchronous code feels like a regression. It's probably a decent library but I can't see a use case for it. No point in going further.
 
-Diagnostic : __synchronous__. Good to know this kind of stuff still exist somewhere. But if your app is anything more than a prototype, there's really no point in using it.
+Diagnostic : __synchronous__. Good to know this kind of stuff still exist somewhere. But if your app is anything more than a prototype, there's really no value in using it.
 
 ### spray-client
 
@@ -128,13 +132,13 @@ pipeline(
 
 A few observations there.
 
-First, spray-client, like everything in Spray, is heavily tied to Akka. You need an actor system. If your app is not already built on Akka, it's not ideal. Sure, you can declare an actor system just for your HTTP requests, but it doesn't feel right.
+First, spray-client, like everything in Spray, is heavily tied to Akka. You need an actor system. If your app is not already built on Akka, it's not ideal. Sure, you can declare an actor system just for your HTTP requests, but it feels a bit cumbersome.
 
-Second, the API is convoluted and just plain _weird_. Take a look at the first line :
+Second, the API is convoluted. Take a look at the first line :
 {% highlight scala %}
 val pipeline = sendReceive
 {% endhighlight %}
-You probably thought that `sendReceive` is a variable being assigned to `pipeline`. Nope. The `pipeline` variable is of type `SendReceive`, and `sendReceive` is actually a method, that builds a `SendReceive` object. It would be better to add parentheses to clarify that :
+You probably thought that `sendReceive` is a variable being assigned to `pipeline`. Nope. The `pipeline` variable is of type `SendReceive`, and `sendReceive` is actually a _method_, that builds a `SendReceive` object. It would be better to add parentheses to clarify that :
 {% highlight scala %}
 val pipeline = sendReceive()
 {% endhighlight %}
@@ -161,77 +165,51 @@ We're back to hieroglyphs. I'm sure once you've mastered this DSL (which is bare
 
 Diagnostic : __solid but over-engineered__. Use it if you want to feel clever.
 
+### Play! WS
 
-
-
-
-
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How `do we` do that
-How do we do that
-How do we do that
-How do we do that
-
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
-How do we do that
+I saved the best for last. [Play!](https://www.playframework.com/) is a massive Scala web framework. It provides a bunch of useful stuff, and while less modular than Spray, some stuff can be used independently. One of them is the [WS API](https://www.playframework.com/documentation/2.4.x/ScalaWS). It is oddly named (who calls HTTP APIs _webservices_ these days ?) and not really advertised, but it's pretty decent.
 
 {% highlight scala %}
-private def callWithPlayWs(): Future[Unit] = {
-  import play.api.libs.ws.ning.NingWSClient
-  import scala.concurrent.ExecutionContext.Implicits.global
-  val wsClient = NingWSClient()
-  wsClient
-    .url("http://jsonplaceholder.typicode.com/comments/1")
-    .withQueryString("some_parameter" -> "some_value", "some_other_parameter" -> "some_other_value")
-    .withHeaders("Cache-Control" -> "no-cache")
-    .get()
-    .map { wsResponse =>
-      if (! (200 to 299).contains(wsResponse.status)) {
-        sys.error(s"Received unexpected status ${wsResponse.status} : ${wsResponse.body}")
-      }
-      println(s"OK, received ${wsResponse.body}")
-      println(s"The response header Content-Length was ${wsResponse.header("Content-Length")}")
-      wsClient.close()
+libraryDependencies += "com.typesafe.play" %% "play-ws" % "2.4.3"
+{% endhighlight %}
+{% highlight scala %}
+import play.api.libs.ws.ning.NingWSClient
+import scala.concurrent.ExecutionContext.Implicits.global
+
+// Instantiation of the client
+// In a real-life application, you would instantiate one, share it everywhere,
+// and call wsClient.close() when you're done
+val wsClient = NingWSClient()
+wsClient
+  .url("http://jsonplaceholder.typicode.com/comments/1")
+  .withQueryString("some_parameter" -> "some_value", "some_other_parameter" -> "some_other_value")
+  .withHeaders("Cache-Control" -> "no-cache")
+  .get()
+  .map { wsResponse =>
+    if (! (200 to 299).contains(wsResponse.status)) {
+      sys.error(s"Received unexpected status ${wsResponse.status} : ${wsResponse.body}")
     }
-}
+    println(s"OK, received ${wsResponse.body}")
+    println(s"The response header Content-Length was ${wsResponse.header("Content-Length")}")
+  }
 {% endhighlight %}
 
+Overall, the API is easy to understand, everything is self-explanatory.
 
-How do we do that
-How do we do that
-How do we do that
+Cons : the documentation is awful for our use-case. It is exclusively targeted at people using it inside the Play! framework, even if it's perfectly usable outside of it.
+
+Pro : you don't need the doc. The methods are well named, just use the auto-completion in your favorite IDE and you will find what you're looking for quickly.
+
+Diagnostic : __good__. Could really use a bit more visibility outside of the Play! world.
+
+### Conclusion
+
+Today we learned a few things.
+
+First, the Google ranking is not an accurate metric to evaluate the quality of a library :)
+
+Second, Github should really display a big red flag over a repo when it has not been updated in over a year.
+
+Third, that there is actually only two serious HTTP client libraries in Scala : __spray-client__ and __Play! WS__.
+
+And finally : that you probably want the latter.

@@ -5,8 +5,15 @@ layout: root
   <header>
     <h1>implicitdef</h1>
     <p>Technical thoughts</p>
+
+    <div class="links">
+      <a>About</a>
+      <a>Archives</a>  
+    </div>
   </header>
+
   <div class="content">
+    <p class="date">{{ page.date | date: "%-d %B %Y"}}</p>
     {{content}}
   </div>
 </body>
