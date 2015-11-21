@@ -15,22 +15,5 @@ layout: root
         <a href="/archives">archives</a>
       </div>
     </header>
-
-  <div class="content">
-    <p class="date">{{ page.date | date: "%-d %B %Y"}}</p>
     {{content}}
-    <div id="disqus_thread"></div>
-    <script>
-      var disqus_config = function () {
-        this.page.url = "https://implicitdef.com/{{page.url}}";
-        this.page.identifier = "{{page.url}}";
-      };
-      (function() {
-        var d = document, s = d.createElement('script');
-        s.src = '//implicitdef.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-  </div>
 </body>
