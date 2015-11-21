@@ -1,16 +1,20 @@
 ---
 layout: root
 ---
-<body class="blog">
-  <header>
-    <h1>implicitdef</h1>
-    <p>Technical thoughts</p>
+{% assign latestPost = site.posts | first %}
 
-    <div class="links">
-      <a>About</a>
-      <a>Archives</a>  
-    </div>
-  </header>
+
+<body class="blog">
+    <header>
+      <a class="latestLink" href="{{latestPost.url}}">
+        <h1>implicitdef</h1>
+        <p>Technical thoughts</p>
+      </a>
+      <div class="links">
+        <a href="/">about</a>
+        <a href="/archives">archives</a>
+      </div>
+    </header>
 
   <div class="content">
     <p class="date">{{ page.date | date: "%-d %B %Y"}}</p>

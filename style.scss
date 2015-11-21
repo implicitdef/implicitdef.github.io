@@ -3,11 +3,12 @@
 
 $lightCol : rgb(230, 228, 213);
 $greenCol : rgb(56, 172, 113);
+$linksCol : #8EDCE6;
+$linksDarkerCol : #218a98;
 
 $bgColor : $greenCol;
 $textColor : $lightCol;
 $borderColor : $lightCol;
-a:hover {text-decoration:none;}
 
 
 body {
@@ -18,14 +19,21 @@ body {
   flex-direction:column;
   min-height:100vh;
   align-items: center;
+  a, a:hover {
+    text-decoration:none;
+    color:$linksCol;
+  }
 }
 
 body.blog {
   header {
-    margin-bottom : 50px;
+    margin-bottom : 0px;
     display:flex;
     flex-direction:column;
     align-items: center;
+    a.latestLink {
+      color:$textColor;
+    }
     h1 {
       font-weight : bold;
       margin-bottom:0;
@@ -34,6 +42,17 @@ body.blog {
       font-size : 15px;
       letter-spacing:1.8px;
     }
+    .links {
+      //background:;
+      margin-top:0px;
+      margin-bottom:25px;
+      a {
+        font-size:17px;
+        //font-family: 'Open Sans', sans-serif;
+        margin:30px;
+      }
+    }
+
   }
 
   .content {
@@ -45,6 +64,10 @@ body.blog {
     background :$textColor ;
     color : rgb(51, 68, 57);
     font-family:'Open Sans', monospace;
+    a, a:hover {
+      //text-decoration:none;
+      color:$linksDarkerCol;
+    }
     .date {
       font-size:13px;
       color:$greenCol;
@@ -72,7 +95,6 @@ body.blog {
       }
     }
     code {
-      color:$greenCol;
       background:transparent;
       font-size:13px;
       padding:inherit;
