@@ -72,6 +72,8 @@ Oh, and actually this library is not maintained. The last meaningful commits see
 
 Diagnostic : __abandonware with a cryptic DSL__. Don't use it.
 
+___EDIT___ _I stand corrected. Dispatch is still maintained, they just moved to [a different repo](https://github.com/dispatch/reboot) (but it still seems that they have a bunch of unanswered issues). Also the weird method names do have English equivalents, like `setQueryParameters`. Personally I would still not use this lib, the doc is too sparse for me to trust it, but it's your call._
+
 ### Newman
 
 From the github documentation [https://github.com/stackmob/newman](https://github.com/stackmob/newman) : "_Newman comes with a DSL which is inspired by Dispatch, but uses mostly english instead of symbols_". Should be good, right ? Well, maybe, but here too the project is abandoned. Last commits in 2014, and Scala 2.11 isn't supported.
