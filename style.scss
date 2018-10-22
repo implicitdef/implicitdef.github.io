@@ -43,12 +43,10 @@ body.blog {
       letter-spacing:1.8px;
     }
     .links {
-      //background:;
       margin-top:0px;
       margin-bottom:25px;
       a {
         font-size:17px;
-        //font-family: 'Open Sans', sans-serif;
         margin:30px;
       }
     }
@@ -65,7 +63,6 @@ body.blog {
     color : rgb(51, 68, 57);
     font-family:'Open Sans', monospace;
     a, a:hover {
-      //text-decoration:none;
       color:$linksDarkerCol;
     }
     .date {
@@ -129,7 +126,6 @@ body.home {
     .name {
       font-size:68px;
       letter-spacing: -3px;
-      font-weight:bold;
     }
   }
   .l2 {
@@ -138,16 +134,13 @@ body.home {
     margin-bottom:30px;
     .i-write-code {
       font-size:48px;
-      font-weight : bold;
     }
   }
 
   .rest {
-    //text-align:justify;
     font-size:20px;
     strong {
       font-size:30px;
-      font-weight : bold;
       line-height:0;
     }
   }
