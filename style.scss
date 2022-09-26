@@ -146,3 +146,21 @@ body.home {
   }
 
 }
+
+
+/* override to clean and display just a big name */
+
+
+body.home {
+  .content {
+    border: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: initial;
+    
+  }
+  h1 {
+    cursor: default;
+  }
+}
